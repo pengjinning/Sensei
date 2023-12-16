@@ -43,7 +43,7 @@ extension API {
         model: ChatGPTModel,
         temperature: Double,
         messages: [Message]
-    ) async throws -> AsyncThrowingStream<String, Swift.Error> {
+    ) async throws -> AsyncThrowingStream<String, any Swift.Error> {
         let apiKey = Settings.apiKey
 
         guard !apiKey.isEmpty else {
@@ -144,9 +144,9 @@ extension API {
                 }
             }
 
-            let output = Output(jsonString: errorJSONString)
+//            let output = Output(json: errorJSONString)
 
-            throw Error.invalidResponse(httpURLResponse.statusCode, output.error.code)
+            throw Error.invalidResponse(httpURLResponse.statusCode, "200")// output.error.code
         }
 
         struct StreamOutput: AnandaModel {
@@ -185,7 +185,7 @@ extension API {
             }
         }
 
-        return AsyncThrowingStream<String, Swift.Error> { continuation in
+        return AsyncThrowingStream<String, any Swift.Error> { continuation in
             Task(priority: .userInitiated) {
                 do {
                     for try await line in result.lines {
@@ -196,15 +196,15 @@ extension API {
                         if line.hasPrefix("data: "),
                            let data = line.dropFirst(6).data(using: .utf8)
                         {
-                            let output = StreamOutput(jsonData: data)
-
-                            if let content = output.choices.first?.delta.content {
-                                continuation.yield(content)
-                            }
-
-                            if output.choices.first?.finishReason == "stop" {
-                                break
-                            }
+//                            let output = StreamOutput(json: "data")
+//
+//                            if let content = output.choices.first?.delta.content {
+//                                continuation.yield(content)
+//                            }
+//
+//                            if output.choices.first?.finishReason == "stop" {
+//                                break
+//                            }
                         }
                     }
 

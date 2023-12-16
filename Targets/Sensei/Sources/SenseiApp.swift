@@ -29,7 +29,7 @@ struct SenseiApp: App {
 
             CommandGroup(before: .help) {
                 Button("Source Code") {
-                    openURL(.init(string: "https://github.com/nixzhu/Sensei")!)
+                    openURL(.init(string: "https://hub.nuaa.cf/nixzhu/Sensei")!)
                 }
                 .keyboardShortcut("/", modifiers: .command)
             }

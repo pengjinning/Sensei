@@ -6,8 +6,12 @@ Sensei is a Mac app based on OpenAI API.
 
 ## Build
 
-<!-- - export all_proxy=socks5://127.0.0.1:10818 -->
-<!-- - xcodebuild -resolvePackageDependencies -scmProvider system -->
+<!-- sudo code /private/etc/hosts -->
+<!-- export http_proxy=http://127.0.0.1:10818 -->
+<!-- export https_proxy=http://127.0.0.1:10818 -->
+<!-- export all_proxy=socks5://127.0.0.1:10818 -->
+<!-- xcodebuild -resolvePackageDependencies -scmProvider system -->
+<!-- github.com 镜像 hub.nuaa.cf -->
 
 To build Sensei, make sure you have Xcode 14.3 installed, follow these steps:
 
